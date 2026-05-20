@@ -10,6 +10,8 @@ public class GamesChangedConsumer : BaseConsumer<GamesChangedMessage>
     private readonly IGamesClientService _gamesClient;
     private readonly ILogger<GamesChangedConsumer> _logger;
 
+    protected override ILogger Logger => _logger;
+
     public GamesChangedConsumer(IGamesClientService gamesClient, ILogger<GamesChangedConsumer> logger)
     {
         _gamesClient = gamesClient;
