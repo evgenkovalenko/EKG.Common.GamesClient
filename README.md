@@ -23,7 +23,8 @@ When a `GamesChangedMessage` arrives on the configured RabbitMQ queue, `InitAsyn
 ```json
 {
   "GamesClient": {
-    "AccessToken": "your-bitbucket-access-token",
+    "GamesRepoToken": "token-for-ekg.caas.games",
+    "OperatorGamesRepoToken": "token-for-ekg.caas.operatorgames",
     "Workspace": "evkgroup",
     "GamesRepo": "ekg.caas.games",
     "OperatorGamesRepo": "ekg.caas.operatorgames",
@@ -48,7 +49,8 @@ When a `GamesChangedMessage` arrives on the configured RabbitMQ queue, `InitAsyn
 
 | Key | Description |
 |---|---|
-| `GamesClient:AccessToken` | Bitbucket HTTP access token |
+| `GamesClient:GamesRepoToken` | Bitbucket access token for the games repository |
+| `GamesClient:OperatorGamesRepoToken` | Bitbucket access token for the operator-games repository |
 | `GamesClient:Workspace` | Bitbucket workspace name |
 | `GamesClient:GamesRepo` | Slug of the original games repository |
 | `GamesClient:OperatorGamesRepo` | Slug of the operator-games repository |

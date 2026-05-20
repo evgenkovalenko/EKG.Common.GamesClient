@@ -14,8 +14,16 @@ internal class BitbucketApiClient : IBitbucketApiClient
     {
         _http = httpClientFactory.CreateClient(nameof(BitbucketApiClient));
         _options = options.Value;
-        _http.DefaultRequestHeaders.Authorization =
-            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _options.AccessToken);
+    }
+
+    private string ResolveToken(string repo) =>
+        repo == _options.OperatorGamesRepo ? _options.OperatorGamesRepoToken : _options.GamesRepoToken;
+
+    private HttpRequestMessage BuildGet(string url, string repo)
+    {
+        var req = new HttpRequestMessage(HttpMethod.Get, url);
+        req.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", ResolveToken(repo));
+        return req;
     }
 
     public async Task<List<string>> ListFilesAsync(string repo, string path)
@@ -33,7 +41,7 @@ internal class BitbucketApiClient : IBitbucketApiClient
     public async Task<string?> GetFileContentAsync(string repo, string filePath)
     {
         var url = $"{ApiBase}/{_options.Workspace}/{repo}/src/{_options.Branch}/{filePath}";
-        var response = await _http.GetAsync(url);
+        var response = await _http.SendAsync(BuildGet(url, repo));
         if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             return null;
         response.EnsureSuccessStatusCode();
@@ -47,7 +55,7 @@ internal class BitbucketApiClient : IBitbucketApiClient
 
         while (url != null)
         {
-            var response = await _http.GetAsync(url);
+            var response = await _http.SendAsync(BuildGet(url, repo));
             if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 break;
             response.EnsureSuccessStatusCode();
