@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/.github/">
+    <File Path=".github/workflows/main.yml" />
+  </Folder>
+  <Folder Name="/SolutionItems/">
+    <File Path="docker-compose.yml" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="EKG.Common.GamesClient.Tests.Unit/EKG.Common.GamesClient.Tests.Unit.csproj" />
+  </Folder>
+  <Project Path="EKG.Common.GamesClient/EKG.Common.GamesClient.csproj" />
+</Solution>
