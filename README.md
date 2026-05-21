@@ -117,6 +117,10 @@ dotnet test EKG.Common.GamesClient.Tests.Unit
 
 ## Publishing
 
-Pushing any commit to `main` triggers the GitHub Actions workflow, which builds and publishes the `EKG.Common.GamesClient` package to GitHub Packages. Version scheme: `{major}.{minor}.{run_number}`.
+Pushing any commit to `main` triggers the GitHub Actions workflow at [evgenkovalenko/EKG.Common.GamesClient](https://github.com/evgenkovalenko/EKG.Common.GamesClient), which builds and publishes the `EKG.Common.GamesClient` package to GitHub Packages. Version scheme: `{major}.{minor}.{run_number}`.
 
 The workflow requires a repository secret `NUGET_READ_TOKEN` — a GitHub PAT with `read:packages` scope (needed to restore the `EKG.Common.Messages` dependency from GitHub Packages).
+
+```bash
+gh secret set NUGET_READ_TOKEN --repo evgenkovalenko/EKG.Common.GamesClient
+```
