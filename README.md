@@ -90,6 +90,29 @@ public class GameLobbyService(IGamesClientService gamesClient)
 }
 ```
 
+## Game Model
+
+The `Game` class maps directly to the JSON files in the Bitbucket games repository. All nested objects use concrete types:
+
+| Property | Type | Description |
+|---|---|---|
+| `Additional` | `Dictionary<string, AdditionalFeature>` | Feature flags (e.g. `highStake`, `fullScreen`); each has `DisplayName` and a `Value` (bool/string/number) |
+| `Bonus` | `GameBonus` | `Contribution` (double), `Overridable` (bool) |
+| `Creation` | `GameCreation` | `LastModified`, `Time`, `NewGameExpiryTime` (DateTime), `UniversalId` |
+| `PlayMode` | `GamePlayMode` | `Anonymity`, `Fun`, `RealMoney` (bool) |
+| `Popularity` | `GamePopularity` | `Coefficient` (double) |
+| `Presentation` | `GamePresentation` | Localized string dictionaries for `GameName`, `Thumbnail`, `Logo`, etc.; `Icons` keyed by pixel size |
+| `Property` | `GameProperty` | `FreeSpin`, `HitFrequency`, `Terminal`, `Width`, `Height`, `License` |
+| `Report` | `GameReport` | `Category`, `InvoicingGroup` |
+| `RuleUrl` | `Dictionary<string, string>` | Locale → URL map |
+| `Currencies` | `JsonElement` | Structure varies by vendor |
+| `MaintenanceWindows` | `JsonElement` | Structure varies by vendor |
+| `VendorLimits` | `JsonElement` | Structure varies by vendor |
+
+All supporting types are defined in `Models/GameTypes.cs`.
+
+---
+
 ## API Reference
 
 ### `IGamesClientService`
