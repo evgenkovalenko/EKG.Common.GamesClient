@@ -11,7 +11,8 @@ public class GamesClientServiceTests
         new(bitbucket,
             Options.Create(new GamesClientOptions
             {
-                AccessToken = "token",
+                GamesRepoToken = "token",
+                OperatorGamesRepoToken = "token",
                 Workspace = "ws",
                 GamesRepo = "games",
                 OperatorGamesRepo = "opGames",
